@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+/* ── Theme tokens ─────────────────────────────────────────────────────────── */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Sora", "Inter", ui-sans-serif, sans-serif;
+  --color-abyss: #020617;
+  --color-pearl: #e2e8f0;
+  --color-mint: #34d399;
+  --color-ice: #22d3ee;
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: #020617;
+  color: #e2e8f0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+:lang(kn) body,
+:lang(kn) input,
+:lang(kn) textarea,
+html[lang="kn"] body {
+  font-family: "Noto Sans Kannada", "Inter", ui-sans-serif, sans-serif;
+}
+
+:lang(hi) body,
+html[lang="hi"] body {
+  font-family: "Noto Sans Devanagari", "Inter", ui-sans-serif, sans-serif;
+}
+
+::selection {
+  background: rgba(52, 211, 153, 0.35);
+  color: #f8fafc;
+}
+
+/* ── Glassmorphism utilities ──────────────────────────────────────────────── */
+.glass {
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+.glass-strong {
+  background: rgba(2, 6, 23, 0.82);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+}
+
+.text-gradient {
+  background: linear-gradient(92deg, #6ee7b7 0%, #22d3ee 48%, #818cf8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Animated background grid + aurora blobs ─────────────────────────────── */
+.grid-veil {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 40%, black 35%, transparent 85%);
+}
+
+.aurora {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.45;
+  animation: aurora-drift 18s ease-in-out infinite alternate;
+}
+
+@keyframes aurora-drift {
+  from { transform: translate3d(-4%, -2%, 0) scale(1); }
+  to { transform: translate3d(5%, 4%, 0) scale(1.15); }
+}
+
+@keyframes soft-pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+@keyframes shimmer-slide {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
+.animate-shimmer {
+  animation: shimmer-slide 1.6s ease-in-out infinite;
+}
+
+/* ── Scrollbars ───────────────────────────────────────────────────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(100, 116, 139, 0.55) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.55);
+  border-radius: 9999px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ── Reduced motion ───────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

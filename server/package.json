@@ -1,0 +1,28 @@
+{
+  "name": "puarai-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "PUARAI backend — Express 5 RAG API (Gemini 2.5 Flash, Atlas Vector Search + TF-IDF fallback) for Presidency University Academic Regulations AI.",
+  "scripts": {
+    "dev": "tsx watch server.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "seed": "tsx scripts/seedVectorStore.ts"
+  },
+  "dependencies": {
+    "@google/genai": "^2.25.0",
+    "cors": "^2.8.6",
+    "dotenv": "^16.4.5",
+    "express": "^5.2.1",
+    "mongoose": "^9.10.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.0",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.0"
+  }
+}
